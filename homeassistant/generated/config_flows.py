@@ -79,6 +79,7 @@ FLOWS = [
     "twentemilieu",
     "twilio",
     "unifi",
+    "unifiled",
     "upnp",
     "velbus",
     "vesync",

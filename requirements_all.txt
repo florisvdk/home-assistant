@@ -1956,7 +1956,7 @@ twentemilieu==0.1.0
 twilio==6.32.0
 
 # homeassistant.components.unifiled
-unifiled==0.11
+unifiled==0.16
 
 # homeassistant.components.upcloud
 upcloud-api==0.4.5
