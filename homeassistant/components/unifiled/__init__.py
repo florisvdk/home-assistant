@@ -25,7 +25,7 @@ async def async_setup_entry(hass, entry):
     api = unifiled(host, port, username=username, password=password)
 
     # Verify that passed in configuration works
-    if not api.getloginstate():
+    if not api.get_login_state():
         _LOGGER.error("Could not connect to unifiled controller")
         raise PlatformNotReady()
 

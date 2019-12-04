@@ -13,7 +13,7 @@ async def async_setup_entry(hass, config_entry, async_add_devices):
 
     api = hass.data[KEY_API][config_entry.entry_id]
 
-    async_add_devices(UnifiLedLight(light, api) for light in api.getlights())
+    async_add_devices(UnifiLedLight(light, api) for light in api.get_lights())
 
 
 class UnifiLedLight(Light):
@@ -28,7 +28,7 @@ class UnifiLedLight(Light):
         self._unique_id = light["id"]
         self._state = light["status"]["output"]
         self._available = light["isOnline"]
-        self._brightness = self._api.convertfrom100to255(light["status"]["led"])
+        self._brightness = self._api.convert_from_100_to_255(light["status"]["led"])
         self._features = SUPPORT_BRIGHTNESS
 
     @property
@@ -74,20 +74,20 @@ class UnifiLedLight(Light):
 
     def turn_on(self, **kwargs):
         """Instruct the light to turn on."""
-        self._api.setdevicebrightness(
+        self._api.set_device_brightness(
             self._unique_id,
-            str(self._api.convertfrom255to100(kwargs.get(ATTR_BRIGHTNESS, 255))),
+            str(self._api.convert_from_255_to_100(kwargs.get(ATTR_BRIGHTNESS, 255))),
         )
-        self._api.setdeviceoutput(self._unique_id, 1)
+        self._api.set_device_output(self._unique_id, 1)
 
     def turn_off(self, **kwargs):
         """Instruct the light to turn off."""
-        self._api.setdeviceoutput(self._unique_id, 0)
+        self._api.set_device_output(self._unique_id, 0)
 
     def update(self):
         """Update the light states."""
-        self._state = self._api.getlightstate(self._unique_id)
-        self._brightness = self._api.convertfrom100to255(
-            self._api.getlightbrightness(self._unique_id)
+        self._state = self._api.get_light_state(self._unique_id)
+        self._brightness = self._api.convert_from_100_to_255(
+            self._api.get_light_brightness(self._unique_id)
         )
-        self._available = self._api.getlightavailable(self._unique_id)
+        self._available = self._api.get_light_available(self._unique_id)

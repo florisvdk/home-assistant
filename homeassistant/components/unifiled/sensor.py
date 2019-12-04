@@ -14,7 +14,7 @@ async def async_setup_entry(hass, config_entry, async_add_devices):
 
     api = hass.data[KEY_API][config_entry.entry_id]
 
-    async_add_devices(UnifiLedSensor(light, api) for light in api.getlights())
+    async_add_devices(UnifiLedSensor(light, api) for light in api.get_lights())
 
 
 class UnifiLedSensor(Entity):
@@ -66,10 +66,7 @@ class UnifiLedSensor(Entity):
         return POWER_WATT
 
     def update(self):
-        """Fetch new state data for the sensor.
-
-        This is the only method that should fetch new data for Home Assistant.
-        """
+        """Fetch new state data for the sensor."""
         temp = self._api.get_lights()
         for device in temp:
             if device["id"] == self._unique_id:

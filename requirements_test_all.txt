@@ -605,7 +605,7 @@ twentemilieu==0.1.0
 twilio==6.32.0
 
 # homeassistant.components.unifiled
-unifiled==0.16
+unifiled==1.1
 
 # homeassistant.components.huawei_lte
 url-normalize==1.4.1

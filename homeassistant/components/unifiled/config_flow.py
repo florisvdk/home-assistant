@@ -27,7 +27,7 @@ async def validate_input(hass: core.HomeAssistant, data):
         unifiled, data["host"], data["port"], data["username"], data["password"]
     )
 
-    if not api.getloginstate():
+    if not api.get_login_state():
         _LOGGER.error("Could not connect to unifiled controller")
         raise CannotConnect()
 

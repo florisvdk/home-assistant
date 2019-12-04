@@ -21,7 +21,7 @@ async def test_form(hass):
         "homeassistant.components.unifiled.config_flow.unifiled",
         return_value=mock_coro(True),
     ), patch(
-        "homeassistant.components.unifiled.config_flow.unifiled.getloginstate",
+        "homeassistant.components.unifiled.config_flow.unifiled.get_login_state",
         return_value=mock_coro(True),
     ), patch(
         "homeassistant.components.unifiled.async_setup", return_value=mock_coro(True)
